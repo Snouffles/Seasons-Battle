@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "sass": "^1.52.3"
+  },
+  "scripts": {
+    "sass": "npx sass -w ./stylesheets/main.scss:./stylesheets/main.css"
+  }
+  
+}
