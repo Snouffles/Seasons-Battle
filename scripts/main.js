@@ -28,7 +28,7 @@
 // }
 
 
-
+//DRAWER
 let coconut = document.querySelector(".header--nav__img");
 let coconutDrawer = document.querySelector(".header--nav__drawer");
 let CoconutDrawerIsOpen = false;
@@ -36,15 +36,21 @@ let CoconutDrawerIsOpen = false;
 coconut.addEventListener("pointerdown", e=>{
     coconut.style.animation = "coconuts 1.5s ease-in-out"
     if(!CoconutDrawerIsOpen){
+        coconutDrawer.style.display = "block";
         coconutDrawer.style.animation = "coconutsDrawerOpen 500ms forwards"
         CoconutDrawerIsOpen= true;
     }else{
-      
-        coconutDrawer.style.animation = "coconutsDrawerClose 500ms forwards ease"
+
+        coconutDrawer.style.animation = "coconutsDrawerClose 500ms forwards ease";
         CoconutDrawerIsOpen= false;
+        setTimeout(()=>{
+          coconutDrawer.style.display = "none";
+       
+      }, 500)
     }
     setTimeout(()=>{
         coconut.style.animation = "";
+     
     }, 1449)
 })
 
@@ -57,139 +63,14 @@ let addPlayerModalError =  addPlayerModal.querySelector(".modal--addPlayer__erro
 let container = document.querySelector(".container");
 let player = document.querySelectorAll(".player");
 let array = [];
-let y = 0;
-let x = 0;
-
-// function createNewPlayer(name){
-//   let i = array.length;
-//   const newPlayer = document.createElement("div");
-//   newPlayer.classList.add("rank");
-//   newPlayer.setAttribute("id",`rank${i}`);
-//   container.appendChild(newPlayer);
-//   const newDiv = document.getElementById(`rank${i}`);
-//   newDiv.innerHTML = 
-//   `
-//   <div class="player" id="player${i}" data-id="${i}">
-//     <img class="btn--minus" data-id="${i}" src="./assets/btn-minus.png" alt="-"/>
-//     <p>${name}</p>
-//     <input type="number" value="0"> 
-//     <img class="btn--plus" src="./assets/btn--plus.png" data-id="${i}" alt="+"/>
-//   </div>
-//   <div class="placement">${i}</div>
-//   `;
-//   y++;
-//   console.log("y:" + y)
-//   test();
-
-  
-
-  
-//   // player.forEach(childs=>{
-//   //   let btnPlus = childs.querySelector(".btn--plus");
-//   //   let btnMinus = childs.querySelector(".btn--minus");
-//   //   let newInput = childs.querySelector(`input`);
-  
-    
-    
-//   //   btnPlus.addEventListener("pointerdown", e=>{
-
-//   //     let newInput = childs.querySelector(`input`);
-//   //     newInput.value++;
-//   //     objIndex = array.findIndex((obj => obj.id == childs.dataset.id));
-//   //     array[objIndex].score = newInput.value;
-//   //     sortArray(array);
-//   //     changePlace(array);
-//   //   })
-
-//   //   btnMinus.addEventListener("pointerdown", e=>{
-//   //     let newInput = childs.querySelector(`input`);
-//   //     newInput.value--;
-//   //     objIndex = array.findIndex((obj => obj.id == childs.dataset.id));
-//   //     array[objIndex].score = newInput.value;
-//   //     sortArray(array);
-//   //     changePlace(array);
-//   //   })
-//   //   newInput.addEventListener("change", (e)=>{
-//   //     e.preventDefault();
-//   //     e.stopPropagation();
-//   //     objIndex = array.findIndex((obj => obj.id == childs.dataset.id));
-//   //     array[objIndex].score = newInput.value;
-//   //     sortArray(array);
-//   //     changePlace(array);
-//   //   });
-    
-//   }
-
-// function test(){
-  
-//   let btnMinus = document.querySelectorAll(".btn--minus")
-//   let btnPlus = document.querySelectorAll(".btn--plus")
-
-//   btnMinus.forEach(btn=>{
-//     btn.addEventListener("pointerdown", e=>{
-//       e.preventDefault();
-//       e.stopPropagation();
-//       let newInput = document.querySelector(`#player${btn.dataset.id} input`);
-//       newInput.value = newInput.value -1;
-//       x++;
-//       console.log(x)
-//     })
-//   })
-//   btnPlus.forEach(btn=>{
-//     btn.addEventListener("pointerdown", e=>{
-//       let input = document.querySelector(`player${btn.dataset.id}`);
-//       input.value--;
-//     })
-//   })
-  
-// }
- 
-
-
-
-
-  // player.forEach(childs=>{
-  //   let btnPlus = childs.querySelector(".btn--plus");
-  //   let btnMinus = childs.querySelector(".btn--minus");
-  //   let newInput = childs.querySelector(`input`);
-  
-    
-    
-  //   btnPlus.addEventListener("pointerdown", e=>{
-
-  //     let newInput = childs.querySelector(`input`);
-  //     newInput.value++;
-  //     objIndex = array.findIndex((obj => obj.id == childs.dataset.id));
-  //     array[objIndex].score = newInput.value;
-  //     sortArray(array);
-  //     changePlace(array);
-  //   })
-
-  //   btnMinus.addEventListener("pointerdown", e=>{
-  //     let newInput = childs.querySelector(`input`);
-  //     newInput.value--;
-  //     objIndex = array.findIndex((obj => obj.id == childs.dataset.id));
-  //     array[objIndex].score = newInput.value;
-  //     sortArray(array);
-  //     changePlace(array);
-  //   })
-  //   newInput.addEventListener("change", (e)=>{
-  //     e.preventDefault();
-  //     e.stopPropagation();
-  //     objIndex = array.findIndex((obj => obj.id == childs.dataset.id));
-  //     array[objIndex].score = newInput.value;
-  //     sortArray(array);
-  //     changePlace(array);
-  //   });
-    
-  // })
-  
-
-
-
+let gameStarted = false;
 
 
 function printPlayer(){
+  if(gameStarted){
+  showHidePlayer();
+  showHideButton();
+  console.log(array);
   container.innerHTML ="";
   for(let i=0; i < array.length; i++){
     let name = array[i].name;
@@ -213,7 +94,6 @@ function printPlayer(){
         btn.addEventListener("click", e=>{
           let input = document.querySelector(`#player${btn.dataset.id} input`);
           input.value++;
-          console.log(btn.dataset.id);
           let objIndex = array.findIndex((obj => obj.id == btn.dataset.id));
           array[objIndex].score = input.value;
           sortArray(array);
@@ -231,21 +111,40 @@ function printPlayer(){
             changePlace(array);
         })
       })
+    }else{
+      container.innerHTML = "";
+      showHidePlayer();
+      showHideButton();
+    }
   
 }
 
+//IF ARRAY HAVE 12 INPUT OR GAME HASNT STARTED YET, HIDE ADD PLAYER BUTTON
+function showHidePlayer(){
+  if(gameStarted &&  array.length < 11){
+    addPlayer.style.display = "flex"
+  }else{
+    addPlayer.style.display = "none";
+    console.log("test")
+  }
+}
 
+//ADD A PLAYER WHEN GAME IS STARTED
 
 addPlayer.addEventListener("pointerdown", e=>{
   addPlayerModal.style.display = "flex";
 })
+
 //add a player "click";
 addPlayerModalBtn.addEventListener("pointerdown", e=>{
   let newPlayer = addPlayerModal.querySelector("input");
   if(newPlayer.value){
     if(!(array.some(e => e.name.toLowerCase() === newPlayer.value.toLowerCase()))){
-        array.push({id: array.length + 1, name: newPlayer.value, score: 0})
-        printPlayer(newPlayer.value);
+        array.push({id: array.length + 1, name: newPlayer.value, score: 0});
+        
+        sortArray(array);
+        gameStarted = true;
+        printPlayer();
         addPlayerModal.style.display = "none";
 
     }else{
@@ -256,13 +155,6 @@ addPlayerModalBtn.addEventListener("pointerdown", e=>{
   }
 })
 
-  
-// player.forEach(childs =>{
-//   let id= childs.dataset.id;
-//   let value= childs.querySelector(`input`).value;
-//   array.push({id: id, name: "", score: value})
-//   }
-// )
 
 
 player.forEach(childs=>{
@@ -324,3 +216,187 @@ function changePlace(array){
 }
 
 
+
+
+//CREATE A NEW GAME; 
+//OPEN MODAL
+let openModal = document.querySelector(".start .start--btn");
+let modalNewGame = document.querySelector(".start--modal__numberOfPlayer");
+openModal.addEventListener("pointerdown", e=>{
+  modalNewGame.style.display = "flex";
+})
+
+//MODAL NUMBER OF PLAYERS
+
+let numberOfPLayer = document.getElementById("numberOfPlayerInput");
+let numberOfPLayerMinus = document.getElementById("start--btn__minus");
+let numberOfPLayerPlus = document.getElementById("start--btn__plus");
+let getNewPlayer = document.querySelector(".btn--continue button");
+
+
+numberOfPLayer.addEventListener("change", e=>{
+  if(numberOfPLayer.value < 2){
+    numberOfPLayer.value =2
+  }
+  if(numberOfPLayer.value > 12){
+    numberOfPLayer.value = 12;
+  }
+})
+
+numberOfPLayerMinus.addEventListener("pointerdown", e=>{
+  if(numberOfPLayer.value >2){
+    numberOfPLayer.value--;
+
+  }
+})
+
+numberOfPLayerPlus.addEventListener("pointerdown", e=>{
+  if(numberOfPLayer.value < 12 ){
+    numberOfPLayer.value++;
+
+  }
+})
+
+let listOfPlayer = document.querySelector(".start--modal__listOfPlayer");
+let modalNumberOfPlayer = document.querySelector(".start--modal__numberOfPlayer");
+getNewPlayer.addEventListener("pointerdown", e=>{
+  getNumberOfPlayer();
+})
+//on focus, press enter
+getNewPlayer.addEventListener("keyup", e=>{
+  if(e.key === "Enter"){
+    getNumberOfPlayer();
+  }
+})
+//IF MODAL OPEN, ENTER CONTINUE
+document.addEventListener("keyup", e=>{
+  if(e.key == "Enter"){
+    if(window.getComputedStyle(modalNumberOfPlayer).display == "flex"){
+      getNumberOfPlayer();
+    }
+  }
+
+})
+
+//CLOSE MODAL
+
+let closeModal = document.querySelector(".start--modal__numberOfPlayer .btn--close");
+
+closeModal.addEventListener("pointerdown", e=>{
+  modalNewGame.style.display = "none";
+  listOfPlayer.style.display = "none";
+});
+
+
+function getNumberOfPlayer(){
+  modalNumberOfPlayer.style.display = "none";
+  listOfPlayer.style.display = "flex";
+  listOfPlayer.innerHTML = "";
+  let y = numberOfPLayer.value;
+  for(let i = 1; i <= y; i++){
+    listOfPlayer.innerHTML += 
+    `<div class="addPlayers newPlayer${i}">
+      <label for="newPlayer${i}">Player ${i} </label>
+      <input type="text" id="newPlayer${i}" maxlength="10"/>
+    </div>`
+    if(i == y){
+      listOfPlayer.innerHTML += `<p class="error"></p><div class="button--continue"><button class="btn">START</button></div><button class="btn btn--close">X</button>`
+    }
+    
+  }
+  document.querySelector(".button--continue button").addEventListener("pointerdown", e=>{
+    checkNameValidation();
+  })
+  document.addEventListener("keyup", e=>{
+    if(e.key == "Enter"){
+      if(window.getComputedStyle(listOfPlayer).display == "flex"){
+        checkNameValidation();
+      }
+    }
+  })
+  
+
+  let closeModal2 = document.querySelector(".start--modal__listOfPlayer .btn--close");
+  closeModal2.addEventListener("pointerdown", e=>{
+    modalNewGame.style.display = "none";
+    listOfPlayer.style.display = "none";
+      
+  });
+}
+
+function checkNameValidation(){
+  let playerArray = [];
+  let ready = true;
+  let errorMessage = "";
+  document.querySelectorAll(".addPlayers").forEach(player=>{
+    let value = player.querySelector("input").value;
+    //check that every players has a different name or not empty
+    if(value == ""){
+      errorMessage = "Every player need an unique name"
+      listOfPlayer.querySelector(".error").innerText = errorMessage;
+      ready = false;
+      playerArray = [];
+      player.querySelector("input").style.border = "1px solid red";
+
+    }else{
+      player.querySelector("input").style.border = "1px solid black";
+
+      if(playerArray.some(e => e.name.toLocaleLowerCase() === value.toLocaleLowerCase())){
+        errorMessage = "Every player need an unique name"
+        listOfPlayer.querySelector(".error").innerText = errorMessage;
+        player.querySelector("input").style.border = "1px solid red";
+        ready = false;
+        playerArray = [];
+
+      }else{
+        playerArray.push({id: playerArray.length +1 , name:value, score: 0});
+        player.querySelector("input").style.border = "1px solid black";
+        
+      }
+    }
+    //if yes, add it to the array and start the game
+   
+  })
+  
+  if(ready){
+    array = playerArray;
+    gameStarted = true;
+    printPlayer();
+    listOfPlayer.style.display = "none";
+    document.querySelector(".start").style.display = "none";
+  }
+}
+
+//START A NEW GAME AND DELETE THE CURRENT GAME
+
+let startNewGameBtn = document.querySelector(".btn--startNewGame");
+let startNewGame = document.querySelector(".modal--startNewGame");
+let startNewGame__yes = document.querySelector(".modal--startNewGame__yes");
+let startNewGame__no = document.querySelector(".modal--startNewGame__no");
+
+startNewGameBtn.addEventListener("pointerdown", e=>{
+  startNewGame.style.display = "flex";
+});
+startNewGame__no.addEventListener("pointerdown", e=>{
+  startNewGame.style.display = "none";
+})
+startNewGame__yes.addEventListener("pointerdown", e=>{
+  //delete the array
+  array = [];
+  //open the new game modal
+  modalNewGame.style.display = "flex";
+  document.querySelector(".start").style.display = "flex"
+  startNewGame.style.display = "none";
+  gameStarted = false;
+  printPlayer();
+
+
+})
+//DISPLAYING BUTTON IF GAME STARTED OR NOT
+function showHideButton(){
+  if(gameStarted){
+    startNewGameBtn.style.display = "flex";
+  }else{
+    startNewGameBtn.style.display = "none";
+  }
+}

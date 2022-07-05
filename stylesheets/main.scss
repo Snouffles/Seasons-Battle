@@ -1,85 +1,89 @@
 @import "./core/_reset.scss";
 @import "./coconut.scss";
+@import "./components/_buttons";
+@import "./components/_modals";
+@import "./base/_fonts";
+@import "./layout/header";
+@import "./abstracts/variable";
 
 
-
-#robot img{
-    height: 500px;
-    position: absolute;
-    z-index: 1;
+// #robot img{
+//     height: 500px;
+//     position: absolute;
+//     z-index: 1;
    
-}
+// }
 
-.robot--screen{
+// .robot--screen{
 
-    position: absolute;
-    transform: skewX(28deg) skewY(-15deg);
-    margin: -70px -360px 0 0;
-    color: green;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 13px;
+//     position: absolute;
+//     transform: skewX(28deg) skewY(-15deg);
+//     margin: -70px -360px 0 0;
+//     color: green;
+//     font-family: 'Press Start 2P', cursive;
+//     font-size: 13px;
 
    
-}
+// }
 
-.robot--container{
-    height: 500px;
-    width: 500px;
-    background-color: black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+// .robot--container{
+//     height: 500px;
+//     width: 500px;
+//     background-color: black;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+// }
 
-.robot--screen__phrase{
-position: absolute;
-}
-svg text {
-    font-size: 13px;
-    max-width: 1200px;
-    fill: blue;
+// .robot--screen__phrase{
+// position: absolute;
+// }
+// svg text {
+//     font-size: 13px;
+//     max-width: 1200px;
+//     fill: blue;
     
     
-  }
-svg path{
-    fill: transparent;
-}
+//   }
+// svg path{
+//     fill: transparent;
+// }
  
-.test {
-    position: absolute;
-    width:50px;
-    height: 50px;
-    margin: -100px 20px 0 0;
-    background: rgba(0, 255, 0, 0.197);
-    overflow: hidden;
-    transform: matrix3d(0.94,-0.34,0.00,0.0050,0.34,0.94,0.00,0,0,0,1,0,0,0,0,1);
--webkit-transform: matrix3d(0.94,-0.34,0.00,0.0050,0.34,0.94,0.00,0,0,0,1,0,0,0,0,1);
-  }
+// .test {
+//     position: absolute;
+//     width:50px;
+//     height: 50px;
+//     margin: -100px 20px 0 0;
+//     background: rgba(0, 255, 0, 0.197);
+//     overflow: hidden;
+//     transform: matrix3d(0.94,-0.34,0.00,0.0050,0.34,0.94,0.00,0,0,0,1,0,0,0,0,1);
+// -webkit-transform: matrix3d(0.94,-0.34,0.00,0.0050,0.34,0.94,0.00,0,0,0,1,0,0,0,0,1);
+//   }
   
-  .test::before {
-    content: '';
-    position: absolute;
-    top:0;
-    left:0;
-    bottom: 0;
-    right:0;
-    background-image: linear-gradient(
-      rgba(0,0,0,.5) 0px,
-      rgba(0,0,0,0) 2px,
-      rgba(0,0,0,.7) 3px
-    );
-    background-size: 100% 4px;
-    animation: 3s interference infinite ease-in-out alternate;  
-      transform-origin:0 0%;
-  }
+//   .test::before {
+//     content: '';
+//     position: absolute;
+//     top:0;
+//     left:0;
+//     bottom: 0;
+//     right:0;
+//     background-image: linear-gradient(
+//       rgba(0,0,0,.5) 0px,
+//       rgba(0,0,0,0) 2px,
+//       rgba(0,0,0,.7) 3px
+//     );
+//     background-size: 100% 4px;
+//     animation: 3s interference infinite ease-in-out alternate;  
+//       transform-origin:0 0%;
+//   }
   
   
-  @keyframes interference {
-    to {
-      transform-origin:0 100%;
-      transform: scale(1.15)
-    }
-  }
+//   @keyframes interference {
+//     to {
+//       transform-origin:0 100%;
+//       transform: scale(1.15)
+//     }
+//   }
 
 
   

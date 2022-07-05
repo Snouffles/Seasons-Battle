@@ -3,84 +3,13 @@ $colorPrimary: #FFCCFF ;
 $colorSecondary: #D37CCF; 
 $colorTertiary: #CCFFCC;
 
-@font-face{
-    font-family: "JustBubble";
-    src: url("./../assets/fonts/JustBubble.ttf");
-}
-@font-face{
-    font-family:"SummerFruit";
-    src: url("./../assets/fonts/summer_fruits_personal_use-webfont.woff")
-}
-
-
 
 body{
     background: rgb(237, 237, 158);
     margin: 0;
-    width: 100%;
-    overflow-x: hidden;
-    
+  
 }
-.header{
-   display: flex;
-    flex-direction: column;
-   width: 100%;
-   
 
-    &--logo{
-        order: 2;
-        width: 100%;
-        height: 100px;
-        display: flex;
-        position: absolute;
-        justify-content: center;
-        z-index: -1;
-        &__img{
-            position: absolute;
-            height: 400px;
-        }
-    
-    }
-    &--nav{
-        width: 100%;
-        height: 300px;
-        order:1;
-        display: flex;
-        justify-content: end;
-       
-
-        &__img{
-            height: 44px;
-            padding: 10px 10px 0 0;
-            transform-origin: bottom;
-            z-index: 2;
-            cursor: pointer;
-
-        }
-        &__drawer{
-            position: relative;
-            background: rgb(0,0,0,0.7);
-            height: 80vh;
-            z-index: 3;
-            transform-origin: right;
-            border-radius: 0 0 0 100%;
-            border-left: 4px solid #FFCCFF;
-            border-bottom: 4px solid #FFCCFF;
-            outline: 1px solid #D37CCF;
-            overflow: hidden;
-            
-        }
-        &__list{
-            position: absolute;
-            display: flex;
-            justify-content: center;
-            width: 60%;
-            height: 60vh;
-           
-        }
-
-    }
-}
 
 @keyframes coconuts{
     0%{transform: rotate(0deg)}
@@ -179,15 +108,7 @@ body{
     margin-left: 2%;
   }
 
- .btn--plus, .btn--minus{
-    height: 44px;
-    width: 44px;
-    object-fit: contain;
-    cursor: pointer;
-  
-    z-index: 1;
- 
- }
+
 
  .modal--addPlayer{
     display: flex;
@@ -244,9 +165,7 @@ body{
  #player{
     display: flex;
     flex-flow: column;
+    align-items: center;
+    justify-content: center;
  }
 
- #btn--addPlayer{
-    font-family: "JustBubble";
-    
- }

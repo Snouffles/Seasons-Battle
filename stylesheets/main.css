@@ -2,71 +2,9 @@ body {
   margin: 0;
 }
 
-@font-face {
-  font-family: "JustBubble";
-  src: url("./../assets/fonts/JustBubble.ttf");
-}
-@font-face {
-  font-family: "SummerFruit";
-  src: url("./../assets/fonts/summer_fruits_personal_use-webfont.woff");
-}
 body {
   background: rgb(237, 237, 158);
   margin: 0;
-  width: 100%;
-  overflow-x: hidden;
-}
-
-.header {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-.header--logo {
-  order: 2;
-  width: 100%;
-  height: 100px;
-  display: flex;
-  position: absolute;
-  justify-content: center;
-  z-index: -1;
-}
-.header--logo__img {
-  position: absolute;
-  height: 400px;
-}
-.header--nav {
-  width: 100%;
-  height: 300px;
-  order: 1;
-  display: flex;
-  justify-content: end;
-}
-.header--nav__img {
-  height: 44px;
-  padding: 10px 10px 0 0;
-  transform-origin: bottom;
-  z-index: 2;
-  cursor: pointer;
-}
-.header--nav__drawer {
-  position: relative;
-  background: rgba(0, 0, 0, 0.7);
-  height: 80vh;
-  z-index: 3;
-  transform-origin: right;
-  border-radius: 0 0 0 100%;
-  border-left: 4px solid #FFCCFF;
-  border-bottom: 4px solid #FFCCFF;
-  outline: 1px solid #D37CCF;
-  overflow: hidden;
-}
-.header--nav__list {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  width: 60%;
-  height: 60vh;
 }
 
 @keyframes coconuts {
@@ -176,14 +114,6 @@ body {
   margin-left: 2%;
 }
 
-.btn--plus, .btn--minus {
-  height: 44px;
-  width: 44px;
-  object-fit: contain;
-  cursor: pointer;
-  z-index: 1;
-}
-
 .modal--addPlayer {
   display: flex;
   flex-direction: column;
@@ -235,79 +165,270 @@ body {
 #player {
   display: flex;
   flex-flow: column;
+  align-items: center;
+  justify-content: center;
 }
 
-#btn--addPlayer {
+.btn {
+  cursor: pointer;
+  background-color: #fff;
+  border: 3px solid #D37CCF;
+  border-radius: 35px;
   font-family: "JustBubble";
+  color: #D37CCF;
+  font-size: 27px;
 }
 
-#robot img {
-  height: 500px;
-  position: absolute;
+.btn--plus, .btn--minus {
+  height: 44px;
+  width: 44px;
+  object-fit: contain;
+  cursor: pointer;
   z-index: 1;
 }
 
-.robot--screen {
-  position: absolute;
-  transform: skewX(28deg) skewY(-15deg);
-  margin: -70px -360px 0 0;
-  color: green;
-  font-family: "Press Start 2P", cursive;
-  font-size: 13px;
-}
-
-.robot--container {
-  height: 500px;
-  width: 500px;
-  background-color: black;
+.btn--continue {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.robot--screen__phrase {
+.btn--continue button {
+  font-family: "JustBubble";
+  border-radius: 35px;
+  width: 123px;
+  height: 44px;
+  color: #D37CCF;
+  background-color: none;
+  border: 3px solid #D37CCF;
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+.btn--close {
   position: absolute;
-}
-
-svg text {
-  font-size: 13px;
-  max-width: 1200px;
-  fill: blue;
-}
-
-svg path {
-  fill: transparent;
-}
-
-.test {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  margin: -100px 20px 0 0;
-  background: rgba(0, 255, 0, 0.197);
-  overflow: hidden;
-  transform: matrix3d(0.94, -0.34, 0, 0.005, 0.34, 0.94, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
-  -webkit-transform: matrix3d(0.94, -0.34, 0, 0.005, 0.34, 0.94, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
-}
-
-.test::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
+  width: 44px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
   right: 0;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5) 0px, rgba(0, 0, 0, 0) 2px, rgba(0, 0, 0, 0.7) 3px);
-  background-size: 100% 4px;
-  animation: 3s interference infinite ease-in-out alternate;
-  transform-origin: 0 0%;
+  top: 0;
+  margin: -20px -20px 0 0;
+  background-color: none;
+  border: 3px solid #D37CCF;
+  outline: 3px solid #000;
+  font-family: "JustBubble";
+  color: #D37CCF;
+  font-size: 32px;
 }
 
-@keyframes interference {
-  to {
-    transform-origin: 0 100%;
-    transform: scale(1.15);
-  }
+.start--modal__listOfPlayer .btn--close {
+  position: absolute;
+}
+
+.btn--bottom {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn--startNewGame {
+  background-color: #fff;
+  border: 3px solid #D37CCF;
+  border-radius: 35px;
+  color: #D37CCF;
+  padding: 10px;
+  font-family: "JustBubble";
+}
+
+#btn--addPlayer {
+  display: none;
+  background-color: #fff;
+  border: 3px solid #D37CCF;
+  border-radius: 35px;
+  color: #D37CCF;
+  padding: 10px;
+  font-family: "JustBubble";
+  text-align: center;
+}
+
+.button--continue button {
+  margin: 10px;
+}
+
+.btn--startNewGame {
+  display: none;
+  margin-bottom: 15px;
+}
+
+.start--modal__numberOfPlayer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 300px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  border: 5px solid #D37CCF;
+  outline: 5px solid #000;
+  border-radius: 35px;
+  flex-flow: row wrap;
+  background-color: #fff;
+}
+
+.start--modal__numberOfPlayer label {
+  width: 100%;
+  text-align: center;
+  font-family: "JustBubble";
+  color: #FFCCFF;
+  font-size: 34px;
+}
+
+.start--modal__numberOfPlayer input {
+  width: 40%;
+  max-width: 200px;
+  text-align: center;
+  border: none;
+  margin: 0 10px;
+  font-family: "JustBubble";
+  color: #FFCCFF;
+  font-size: 72px;
+  -moz-appearance: textfield;
+  appearance: none;
+}
+
+.start--modal__listOfPlayer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  min-height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 5px solid #D37CCF;
+  outline: 5px solid #000;
+  border-radius: 35px;
+  flex-flow: row wrap;
+  background-color: #fff;
+}
+
+.start--modal__listOfPlayer label {
+  color: #D37CCF;
+}
+
+.start--modal__listOfPlayer input {
+  width: 100px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.start--modal__listOfPlayer .button--continue {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.start--modal__listOfPlayer .error {
+  color: rgb(232, 67, 67);
+  height: 20px;
+  width: 90%;
+  text-align: center;
+}
+
+.addPlayers {
+  width: 100px;
+  margin: 10px;
+  text-align: center;
+}
+
+.start--modal__listOfPlayer:empty {
+  display: none;
+}
+
+.modal--startNewGame {
+  height: 150px;
+  width: 80%;
+  background-color: #fff;
+  border: 3px solid #D37CCF;
+  outline: 3px solid #000;
+  border-radius: 35px;
+  display: none;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  flex-flow: row wrap;
+  text-align: center;
+  z-index: 2;
+}
+
+@font-face {
+  font-family: "JustBubble";
+  src: url("./../assets/fonts/JustBubble.ttf");
+}
+@font-face {
+  font-family: "SummerFruit";
+  src: url("./../assets/fonts/summer_fruits_personal_use-webfont.woff");
+}
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 300px;
+}
+.header--logo {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.header--logo__img {
+  height: 300px;
+}
+.header--nav {
+  width: 100%;
+  height: 300px;
+  order: 1;
+  display: flex;
+  justify-content: end;
+  overflow: hidden;
+}
+.header--nav__img {
+  height: 44px;
+  margin: 10px;
+  transform-origin: bottom;
+  z-index: 2;
+  cursor: pointer;
+}
+.header--nav__drawer {
+  position: relative;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: 3;
+  transform-origin: right;
+  border-left: 4px solid #D37CCF;
+  border-bottom: 4px solid #D37CCF;
+  display: none;
+}
+.header--nav__list {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
+  color: #FFCCFF;
 }
 
 /*# sourceMappingURL=main.css.map */

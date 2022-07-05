@@ -26,11 +26,25 @@
         </div>
       </nav>
     </header>
+    <section id="start" class="start">
+      <button id="btn--start" class="btn start--btn">START</button>
+      <div class="start--modal__numberOfPlayer">
+        <label for="start--input__numberOfPlayer">Number of players</label>
+        <img class="btn btn--minus" id="start--btn__minus" src="./assets/btn-minus.png"/ alt="minus button">
+        <input id="numberOfPlayerInput" type="number" min="2" max="20" value="2"/>
+        <img class="btn btn--plus" id="start--btn__plus" src="./assets/btn--plus.png" alt="plus button"/>
+        <div class="btn--continue">
+          <button class="btn">Continue</button>
+        </div>
+        <button class="btn btn--close">X</button>
+      </div>
+      <div class="start--modal__listOfPlayer"></div>
+    </section>
     <section id="player">
       <button class="btn" id="btn--addPlayer">Add player</button>
       <div class="modal--addPlayer">
         <label class="modal--addPlayer__label">Player Name</label>
-        <input class="modal--addPlayer__input" type="text" maxlength="12"/>
+        <input class="modal--addPlayer__input" type="text" maxlength="10"/>
         <button class="modal--addPlayer__btn" >ok</button>
         <img class="modal--addPlayer__shine" src="./assets/modalShine.png" alt="shinyModal"/>
         <p class="modal--addPlayer__error">TEST</p>
@@ -38,11 +52,19 @@
       <div class="container">
         
       </div>
+      <div class="btn--bottom">
+        <button class="btn--startNewGame">Start a new game</button>
+      </div>
+      <div class="modal--startNewGame">
+        <p>This action will delete the current game, are you sure?</p>
+        <button class="btn modal--startNewGame__yes">Yes</button>
+        <button class="btn modal--startNewGame__no">No</button>
+      </div>
     </section>
     
     
      
-    </section>
+  
 
     <script src="./scripts/main.js"></script>
 </body>

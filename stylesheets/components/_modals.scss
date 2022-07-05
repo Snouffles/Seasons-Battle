@@ -1,0 +1,106 @@
+@import "../abstracts/variable";
+
+.start--modal__numberOfPlayer{
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    width: 80%;
+    height: 300px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid $colorSecondary;
+    outline: 5px solid#000;
+    border-radius: 35px;
+    flex-flow: row wrap; 
+    background-color: #fff;
+}
+
+.start--modal__numberOfPlayer label{
+    width: 100%;
+    text-align: center;
+    font-family: $font--bubble;
+    color: $colorPrimary;
+    font-size: 34px;
+    
+    
+
+}
+.start--modal__numberOfPlayer input{
+    width: 40%;
+    max-width: 200px;
+    text-align: center;
+    border: none;
+    margin: 0 10px;
+    font-family: $font--bubble;
+    color: $colorPrimary;
+    font-size: 72px;
+    -moz-appearance: textfield;
+    appearance: none;
+}
+
+.start--modal__listOfPlayer{
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    width: 80%;
+    min-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid $colorSecondary;
+    outline: 5px solid#000;
+    border-radius: 35px;
+    flex-flow: row wrap; 
+    background-color: #fff;
+    
+}
+.start--modal__listOfPlayer label{
+    color: $colorSecondary;
+}
+.start--modal__listOfPlayer input{
+    width: 100px;
+    font-size: 13px;
+    text-align: center;
+}
+.start--modal__listOfPlayer .button--continue{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.start--modal__listOfPlayer .error{
+    color: rgb(232, 67, 67);
+    height: 20px;
+    width: 90%;
+    text-align: center;
+}
+.addPlayers{
+    width: 100px;
+    margin: 10px;  
+    text-align: center; 
+}
+.start--modal__listOfPlayer:empty{
+    display: none;
+}
+
+.modal--startNewGame{
+    height: 150px;
+    width: 80%;
+    background-color: #fff;
+    border: 3px solid $colorSecondary;
+    outline: 3px solid #000;
+    border-radius: 35px;
+    display: none;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+    flex-flow: row wrap;
+    text-align: center;
+    z-index: 2;
+}

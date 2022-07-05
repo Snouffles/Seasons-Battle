@@ -1,0 +1,101 @@
+@import "../abstracts/variable";
+
+.btn{
+ 
+   
+   cursor: pointer;
+   background-color: #fff;
+   border: 3px solid $colorSecondary;
+   border-radius: 35px;
+   font-family: $font--bubble;
+   color: $colorSecondary;
+   font-size: 27px;
+}
+
+
+.btn--plus, .btn--minus{
+    height: 44px;
+    width: 44px;
+    object-fit: contain;
+    cursor: pointer;
+    z-index: 1;
+ 
+ }
+
+ 
+ .btn--continue{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+
+ .btn--continue button {
+   font-family: $font--bubble;
+   border-radius: 35px;
+   width: 123px;
+   height: 44px;
+   color: $colorSecondary;
+   background-color: none;
+   border: 3px solid $colorSecondary;
+   font-size: 22px;
+   margin-bottom: 15px;
+ }
+
+ .btn--close{
+   position: absolute;
+   width: 44px;
+   aspect-ratio: 1/1;
+   border-radius: 50%;
+   right: 0;
+   top: 0;
+   margin: -20px -20px 0 0;
+   background-color: none;
+   border: 3px solid $colorSecondary;
+   outline: 3px solid #000;
+   font-family: $font--bubble;
+   color: $colorSecondary;
+   font-size:32px;
+   
+   
+ }
+ .start--modal__listOfPlayer .btn--close{
+   position: absolute
+ }
+
+
+
+ .btn--bottom{
+   display: flex;
+   width: 100%;
+   justify-content: center;
+   align-items: center;
+ }
+ .btn--startNewGame{
+   background-color: #fff;
+   border: 3px solid $colorSecondary;
+   border-radius: 35px;
+   color: $colorSecondary;
+   padding: 10px;
+   font-family: $font--bubble;
+ }
+
+ #btn--addPlayer{
+   display: none;
+   background-color: #fff;
+   border: 3px solid $colorSecondary;
+   border-radius: 35px;
+   color: $colorSecondary;
+   padding: 10px;
+   font-family: $font--bubble;
+   text-align: center;
+ }
+
+ .button--continue button{
+   margin: 10px;
+ }
+
+ .btn--startNewGame{
+   display: none;
+   margin-bottom: 15px;
+ }
