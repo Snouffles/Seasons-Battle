@@ -62,21 +62,24 @@ let addPlayerModalBtn = addPlayerModal.querySelector("button");
 let addPlayerModalError =  addPlayerModal.querySelector(".modal--addPlayer__error");
 let container = document.querySelector(".container");
 let player = document.querySelectorAll(".player");
-let array = [];
-let gameStarted = false;
+let array = [{id:1, name:"robert", score:0}, {id:2, name:"Daniel", score:0}];
+let gameStarted = true; //change de false
+
+printPlayer();
 
 
 function printPlayer(){
   if(gameStarted){
   showHidePlayer();
-  showHideButton();
-  console.log(array);
+  // showHideButton();
+  sortArray(array);
+  console.log(array)
   container.innerHTML ="";
   for(let i=0; i < array.length; i++){
     let name = array[i].name;
     let score = array[i].score;
     container.innerHTML +=
-    `<div class="rank" id="rank${i+1}">
+    `<div class="rank" id="rank${i+1}" data-id="${i}">
         <div class="player" id="player${i+1}" data-id="${i+1}">
           <img class="btn--minus" data-id="${i+1}" src="./assets/btn-minus.png" alt="-"/>
           <p>${name}</p>
@@ -88,36 +91,65 @@ function printPlayer(){
       `;
     }
 
-      let btnPlus = document.querySelectorAll(".btn--plus");
-      let btnMinus = document.querySelectorAll(".btn--minus");
+
+    let btnMinus = document.querySelectorAll(".btn--minus");
+    let btnPlus = document.querySelectorAll(".btn--plus");
       btnPlus.forEach(btn=>{
         btn.addEventListener("click", e=>{
-          let input = document.querySelector(`#player${btn.dataset.id} input`);
+          console.log(btn.parentNode.parentNode.dataset.id)
+          console.log(array[btn.parentNode.parentNode.dataset.id].name);
+          console.log(`.${btn.parentNode.id} input`);
+          let input = document.querySelector(`#${btn.parentNode.parentNode.id} .player input`);
           input.value++;
-          let objIndex = array.findIndex((obj => obj.id == btn.dataset.id));
-          array[objIndex].score = input.value;
+          array[btn.parentNode.parentNode.dataset.id].score = input.value;
+          console.log(array);
           sortArray(array);
           changePlace(array);
         })
       })
+
+
+
       btnMinus.forEach(btn=>{
         btn.addEventListener("click", e=>{
+
+          console.log(btn.dataset.id)
+          console.log(array[btn.dataset.id-1].name);
             let input = document.querySelector(`#player${btn.dataset.id} input`);
             input.value--;
-            console.log(btn.dataset.id);
             let objIndex = array.findIndex((obj => obj.id == btn.dataset.id));
+            console.log(array[objIndex].name);
             array[objIndex].score = input.value;
             sortArray(array);
-            changePlace(array);
+            printPlayer();
+            // changePlace(array);
+           
+            
         })
       })
+ 
+      //Delete Player
+
+      // document.querySelectorAll(".player").forEach(player=>{
+      //   player.addEventListener("click", e=>{
+      //     console.log("will delete later a player")
+      //   })
+      // })
+
+      sortArray(array);
+      
     }else{
       container.innerHTML = "";
       showHidePlayer();
       showHideButton();
     }
   
+  
 }
+
+
+  
+
 
 //IF ARRAY HAVE 12 INPUT OR GAME HASNT STARTED YET, HIDE ADD PLAYER BUTTON
 function showHidePlayer(){
@@ -125,80 +157,114 @@ function showHidePlayer(){
     addPlayer.style.display = "flex"
   }else{
     addPlayer.style.display = "none";
-    console.log("test")
+
   }
 }
 
 //ADD A PLAYER WHEN GAME IS STARTED
 
 addPlayer.addEventListener("pointerdown", e=>{
+  addPlayerModal.querySelector("input").value = "";
+  addPlayerModal.querySelector("input").focus();
   addPlayerModal.style.display = "flex";
+
 })
+
 
 //add a player "click";
-addPlayerModalBtn.addEventListener("pointerdown", e=>{
-  let newPlayer = addPlayerModal.querySelector("input");
-  if(newPlayer.value){
-    if(!(array.some(e => e.name.toLowerCase() === newPlayer.value.toLowerCase()))){
-        array.push({id: array.length + 1, name: newPlayer.value, score: 0});
-        
-        sortArray(array);
-        gameStarted = true;
-        printPlayer();
-        addPlayerModal.style.display = "none";
-
-    }else{
-      addPlayerModalError.innerText = "Name already taken";
-    }
-  }else{
-    addPlayerModalError.innerText = "Please enter a name";
-  }
-})
 
 
+          addPlayerModalBtn.addEventListener("pointerdown", e=>{
+            let newPlayer = addPlayerModal.querySelector("input");
+            if(newPlayer.value){
+              if(!(array.some(e => e.name.toLowerCase() === newPlayer.value.toLowerCase()))){
+                  array.push({id: array.length + 1, name: newPlayer.value, score: "0"});
+                  gameStarted = true;
+                  printPlayer(); 
+                  addPlayerModal.style.display = "none";
 
-player.forEach(childs=>{
-  let btnPlus = childs.querySelector(".btn--plus");
-  let btnMinus = childs.querySelector(".btn--minus");
-  let newInput = childs.querySelector(`input`);
+              }else{
+                addPlayerModalError.innerText = "Name already taken";
+              }
+            }else{
+              addPlayerModalError.innerText = "Please enter a name";
+            }
+          })
+          document.addEventListener("keyup", e=>{
+            if(e.key == "Enter"){
+              if(window.getComputedStyle(addPlayer).display == "flex"){
+                let newPlayer = addPlayerModal.querySelector("input");
+            if(newPlayer.value){
+              if(!(array.some(e => e.name.toLowerCase() === newPlayer.value.toLowerCase()))){
+                  array.push({id: array.length + 1, name: newPlayer.value, score: "0"});
+                  
+                  sortArray(array);
+                  gameStarted = true;
+                  printPlayer();
+                  addPlayerModal.style.display = "none";
+
+              }else{
+                addPlayerModalError.innerText = "Name already taken";
+              }
+            }else{
+              addPlayerModalError.innerText = "Please enter a name";
+            }
+              }
+            }
+
+          })
+  document.getElementById("modal--addPlayer__close").addEventListener("pointerdown", e=>{
+    // addPlayerModal.style.display = "none";
+    document.getElementById("focus").focus();
+  })
+
+
+//ADD OR REMOVE POINT FOR PLAYER
+// player.forEach(childs=>{
+//   let btnPlus = childs.querySelector(".btn--plus");
+//   let btnMinus = childs.querySelector(".btn--minus");
+//   let newInput = childs.querySelector(`input`);
   
-  btnPlus.addEventListener("pointerdown", e=>{
-    newInput.value++;
-    objIndex = array.findIndex((obj => obj.id == childs.dataset.id));
-    array[objIndex].score = newInput.value;
-    sortArray(array);
-    changePlace(array);
-  })
-  btnMinus.addEventListener("pointerdown", e=>{
-    newInput.value--;
-    objIndex = array.findIndex((obj => obj.id == childs.dataset.id));
-    array[objIndex].score = newInput.value;
-    sortArray(array);
-    changePlace(array);
-  })
-  newInput.addEventListener("change", (e)=>{
-    e.preventDefault();
-    e.stopPropagation();
-    objIndex = array.findIndex((obj => obj.id == childs.dataset.id));
-    array[objIndex].value = newInput.value;
-    sortArray(array);
-    changePlace(array);
-  });
-})
+//   btnPlus.addEventListener("pointerdown", e=>{
+//     newInput.value++;
+//     objIndex = array.findIndex((obj => obj.id == childs.dataset.id));
+//     array[objIndex].score = newInput.value;
+//     sortArray(array);
+//     changePlace(array);
+//   })
+//   btnMinus.addEventListener("pointerdown", e=>{
+//     newInput.value--;
+//     objIndex = array.findIndex((obj => obj.id == childs.dataset.id));
+//     array[objIndex].score = newInput.value;
+//     sortArray(array);
+//     changePlace(array);
+//   })
+//   newInput.addEventListener("change", (e)=>{
+//     e.preventDefault();
+//     e.stopPropagation();
+//     objIndex = array.findIndex((obj => obj.id == childs.dataset.id));
+//     array[objIndex].value = newInput.value;
+//     sortArray(array);
+//     changePlace(array);
+//   });
+// })
 
 function sortArray (array){
     array.sort((a, b) =>{
       return b.score - a.score;
     })
+  
     
 }
 
+
 function changePlace(array){
- 
+//check every part of the array
+  sortArray(array);
   for(let i = 0; i < array.length; i++){
     let rank = document.getElementById(`player${array[i].id}`);
     let parentRank = document.getElementById(rank.parentNode.id);
-
+    console.log(`player${array[i].name} rank${i+1} : ${parentRank.id}`);
     if(!(parentRank.id === `rank${i+1}`)){
 
         let newRank = document.querySelector(`#rank${i+1} .player`);
@@ -275,7 +341,6 @@ document.addEventListener("keyup", e=>{
       getNumberOfPlayer();
     }
   }
-
 })
 
 //CLOSE MODAL
@@ -300,6 +365,7 @@ function getNumberOfPlayer(){
       <input type="text" id="newPlayer${i}" maxlength="10"/>
     </div>`
     if(i == y){
+
       listOfPlayer.innerHTML += `<p class="error"></p><div class="button--continue"><button class="btn">START</button></div><button class="btn btn--close">X</button>`
     }
     
@@ -349,7 +415,7 @@ function checkNameValidation(){
         playerArray = [];
 
       }else{
-        playerArray.push({id: playerArray.length +1 , name:value, score: 0});
+        playerArray.push({id: playerArray.length +1 , name:value, score: "0"});
         player.querySelector("input").style.border = "1px solid black";
         
       }
@@ -400,3 +466,15 @@ function showHideButton(){
     startNewGameBtn.style.display = "none";
   }
 }
+
+
+
+
+
+/* LOG 
+
+Lors du rajout d'un jour, les boutons ne sont designé a la bonne personne.
+Debug => 
+
+Premier test, plutot que reprint l'ensemble lors d'un ajout. Just rajouté un element.
+*/
